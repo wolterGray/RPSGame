@@ -12,7 +12,7 @@ function Header({score}) {
       </div>
       <div className=" bg-[white] font-semibold rounded-xl flex flex-col items-center justify-center h-full w-2/12 text-scoreColor">
         <p className="text-xs tracking-[.2em]">Score</p>
-        <p className="text-5xl">{score}</p>
+        <p className={`text-5xl`}>{score}</p>
       </div>
     </header>
   );

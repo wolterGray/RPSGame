@@ -1,12 +1,15 @@
 import React from "react";
 import GestureItem from "./GestureItem";
 import {motion} from "framer-motion";
+import CustomButton from "./CustomButton";
 
 function DisplayResult({
   userSelection,
   computerSelection,
   setStartGame,
+  score,
   setScore,
+  newGame,
 }) {
   const [resultMessage, setResultMessage] = React.useState("");
 
@@ -21,26 +24,29 @@ function DisplayResult({
       setResultMessage("You win!");
       setScore((prev) => prev + 1);
     } else {
-      setResultMessage("You lose!");
-      setScore((prev) => prev - 1);
+      score > 1 ? setResultMessage("You lose!") : setResultMessage("game over");
+      setScore((prev) => (prev > 0 ? prev - 1 : 0));
     }
   }
+
   React.useEffect(() => {
     getResultMessage(userSelection.name, computerSelection.name);
   }, []);
   return (
-    <motion.div className="flex  justify-between  items-center gap-12">
+    <div initial={{scale:0}} className="flex  justify-between  items-center gap-12">
       <GestureItem {...userSelection} />
-      <div className="flex flex-col items-center">
+      <motion.div initial={{scale:0}} animate={{scale:1}}transition={{delay:0.3}} className="flex flex-col items-center">
         <p className=" text-5xl mb-3">{resultMessage}</p>
-        <button
-          onClick={() => setStartGame(false)}
-          className="bg-[white] uppercase  text-scoreColor px-10 py-2 rounded-lg">
-          Play Again
-        </button>
-      </div>
+        {resultMessage !== "game over" ? (
+          <CustomButton onClick={() => setStartGame(false)}>
+            Try Again
+          </CustomButton>
+        ) : (
+          <CustomButton onClick={newGame}>New Game</CustomButton>
+        )}
+      </motion.div>
       <GestureItem {...computerSelection} />
-    </motion.div>
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@ import GestureItem from "./GestureItem";
 import DisplayResult from "./DisplayResult";
 import {AnimatePresence} from "framer-motion";
 
-function PlayerGestureSelector({startGame, setStartGame,score, setScore}) {
+function PlayerGestureSelector({startGame, setStartGame, score, setScore}) {
   const [gestureData, setGestureData] = React.useState([
     {
       id: 1,
@@ -28,6 +28,11 @@ function PlayerGestureSelector({startGame, setStartGame,score, setScore}) {
   const [computerSelection, setComputerSelection] = React.useState([]);
   const [userSelection, setUserSelection] = React.useState([]);
 
+  function newGame() {
+    setStartGame(false);
+    setScore(0);
+  }
+
   const handleSelections = (option) => {
     setStartGame(true);
     setUserSelection(gestureData.filter((b) => b.name === option)[0]);
@@ -36,18 +41,19 @@ function PlayerGestureSelector({startGame, setStartGame,score, setScore}) {
     );
   };
   return (
-    <div>
-      <div className={`mt-14 ${!startGame && "max-w-lg mx-auto"}`}>
+    <div className="relative">
+      <div className={`mt-14  ${!startGame && "bg-img max-w-lg mx-auto"}`}>
         <div className=" flex flex-col items-center mx-auto ">
-          <div className="flex flex-wrap justify-center gap-x-16 gap-y-8">
+          <div className=" flex flex-wrap justify-center gap-x-16 gap-y-8">
             {startGame ? (
-              score > 0 ?
               <DisplayResult
                 userSelection={userSelection}
                 computerSelection={computerSelection}
+                newGame={newGame}
+                score={score}
                 setScore={setScore}
                 setStartGame={setStartGame}
-              />: 'Looser!'
+              />
             ) : (
               gestureData.map((button) => (
                 <GestureItem
