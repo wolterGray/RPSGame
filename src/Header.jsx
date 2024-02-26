@@ -1,6 +1,7 @@
 import React from "react";
 
 function Header({score}) {
+  
   return (
     <header className="flex  justify-between items-center gap-10 border-2 h-full relative rounded-xl w-6/12 mx-auto p-4 border-solid border-outlineColor uppercase ">
       <div className="">

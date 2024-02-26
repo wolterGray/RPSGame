@@ -1,7 +1,7 @@
 import React from "react";
 import GestureItem from "./GestureItem";
 import DisplayResult from "./DisplayResult";
-import {AnimatePresence} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 
 function PlayerGestureSelector({startGame, setStartGame, score, setScore}) {
   const [gestureData, setGestureData] = React.useState([

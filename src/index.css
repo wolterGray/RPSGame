@@ -13,12 +13,11 @@ body {
 .pseudo_content {
   content: "";
   position: absolute;
-  width: calc(100% + 50px);
-  height: calc(100% + 50px);
+  width: inherit;
+  height: inherit;
   border-radius: 100%;
 }
-.bg-img {
-}
+
 .bg-img {
   background: url("/images/bg-triangle.svg") no-repeat;
   background-size: auto;
@@ -26,14 +25,14 @@ body {
 }
 
 .image {
-  @apply transition-all rotate-[20deg] z-10  duration-200 ease-out bg-[white] w-52 h-52 rounded-full flex items-center justify-center border-[25px]  shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.2)] cursor-pointer  relative;
+  @apply transition-all rotate-[20deg] z-10  duration-200 ease-out bg-[white]  rounded-full flex items-center justify-center  shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.2)] cursor-pointer  relative;
 }
 
 .image::before {
-  @apply pseudo_content transition-all ease-in-out duration-200 shadow-[inset_0px_-4px_1px_3px_rgba(0,0,0,0.3)];
+  @apply pseudo_content  transition-all ease-in-out duration-200 shadow-[inset_0px_-4px_1px_4px_rgba(0,0,0,0.3)];
 }
 .image::after {
-  @apply pseudo_content shadow-[inset_0px_8px_6px_3px_rgba(255,255,255,0.1)];
+  @apply pseudo_content shadow-[inset_0px_8px_6px_3px_rgba(255,255,255,0.2)];
 }
 .image:hover {
   @apply rotate-0;
@@ -46,4 +45,22 @@ body {
 }
 .image:active::before {
   @apply pseudo_content  shadow-[inset_0px_0px_7px_6px_rgba(0,0,0,0.2)];
+}
+.boxShadow {
+  --shadow-20px: 0 0 0 40px hsla(0, 0%, 83%, 0.026);
+  --shadow-50px: 0 0 0 80px hsla(0, 0%, 83%, 0.026);
+  --shadow-80px: 0 0 0 120px hsla(0, 0%, 83%, 0.026);
+  box-shadow: var(--shadow-20px), var(--shadow-50px), var(--shadow-80px);
+  animation: shadow 1s ease-in-out infinite;
+}
+@keyframes shadow {
+  0% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: var(--shadow-20px), var(--shadow-50px), var(--shadow-80px);
+  }
+  100% {
+    box-shadow: none;
+  }
 }
