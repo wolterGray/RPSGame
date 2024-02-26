@@ -3,16 +3,17 @@ import {motion} from "framer-motion";
 
 function GestureItem(props) {
   const handleClick = () => {
-    props.handleSelections(props.name);
+    props.handleSelections && props.handleSelections(props.name);
   };
-    console.log(props);
   return (
     <motion.div
+      initial={{scale: 0}}
+      animate={{scale: 1}}
+      whileTap={{translateY: 5}}
       key={props.id}
-      exit={{opacity: 0, scale: 0}}
       onClick={handleClick}
       style={{borderColor: `${props.color}`}}
-      className={`image transition-all`}>
+      className={`image`}>
       <img src={props.path} alt={props.name} />
     </motion.div>
   );

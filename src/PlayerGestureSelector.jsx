@@ -40,22 +40,21 @@ function PlayerGestureSelector({startGame, setStartGame}) {
       <div className="mt-14">
         <div className=" flex flex-col items-center mx-auto ">
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-8">
-            <AnimatePresence>
-              {startGame ? (
-                <DisplayResult
-                  userSelection={userSelection}
-                  computerSelection={computerSelection}
+            {startGame ? (
+              <DisplayResult
+                userSelection={userSelection}
+                computerSelection={computerSelection}
+                setStartGame={setStartGame}
+              />
+            ) : (
+              gestureData.map((button) => (
+                <GestureItem
+                  key={button.id}
+                  handleSelections={handleSelections}
+                  {...button}
                 />
-              ) : (
-                gestureData.map((button) => (
-                  <GestureItem
-                    key={button.id}
-                    handleSelections={handleSelections}
-                    {...button}
-                  />
-                ))
-              )}
-            </AnimatePresence>
+              ))
+            )}
           </div>
         </div>
         <button className="absolute border-2 border-outlineColor px-10 py-2 bottom-10 right-20 rounded-xl hover:bg-scoreColor transition-bg ease-out uppercase text-xl tracking-[.2em]">
