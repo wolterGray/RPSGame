@@ -25,7 +25,15 @@ function PlayerGestureSelector({startGame, setStartGame}) {
 
   const [computerSelection, setComputerSelection] = React.useState([]);
   const [userSelection, setUserSelection] = React.useState([]);
-
+  
+  console.log(userSelection, computerSelection);
+  const handleSelections = (option) => {
+    setStartGame(true);
+    setUserSelection(gestureData.filter((b) => b.name === option));
+    setComputerSelection([
+      gestureData[Math.floor(Math.random() * gestureData.length)],
+    ]);
+  };
   return (
     <div>
       <div className="mt-14">
@@ -33,7 +41,7 @@ function PlayerGestureSelector({startGame, setStartGame}) {
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-8">
             {!startGame &&
               gestureData.map((button) => (
-                <GestureItem key={button.id} {...button} />
+                <GestureItem handleSelections={handleSelections} key={button.id} {...button} />
               ))}
           </div>
         </div>

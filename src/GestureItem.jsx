@@ -1,9 +1,9 @@
 import React from "react";
-import {motion} from "framer-motion"
+import {motion} from "framer-motion";
 
 function GestureItem(props) {
   const handleClick = () => {
-   console.log('click');
+    props.handleSelections(props.name);
   };
   return (
     <motion.div
