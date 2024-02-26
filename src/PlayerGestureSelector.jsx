@@ -3,7 +3,7 @@ import GestureItem from "./GestureItem";
 import DisplayResult from "./DisplayResult";
 import {AnimatePresence} from "framer-motion";
 
-function PlayerGestureSelector({startGame, setStartGame}) {
+function PlayerGestureSelector({startGame, setStartGame,score, setScore}) {
   const [gestureData, setGestureData] = React.useState([
     {
       id: 1,
@@ -37,15 +37,17 @@ function PlayerGestureSelector({startGame, setStartGame}) {
   };
   return (
     <div>
-      <div className="mt-14">
+      <div className={`mt-14 ${!startGame && "max-w-lg mx-auto"}`}>
         <div className=" flex flex-col items-center mx-auto ">
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-8">
             {startGame ? (
+              score > 0 ?
               <DisplayResult
                 userSelection={userSelection}
                 computerSelection={computerSelection}
+                setScore={setScore}
                 setStartGame={setStartGame}
-              />
+              />: 'Looser!'
             ) : (
               gestureData.map((button) => (
                 <GestureItem

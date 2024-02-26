@@ -10,6 +10,7 @@ function GestureItem(props) {
       initial={{scale: 0}}
       animate={{scale: 1}}
       whileTap={{translateY: 5}}
+      whileHover={{scale: 1.05, rotate:10}}
       key={props.id}
       onClick={handleClick}
       style={{borderColor: `${props.color}`}}
