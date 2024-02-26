@@ -25,7 +25,7 @@ body {
 }
 
 .image {
-  @apply transition-all rotate-[20deg] z-10  duration-200 ease-out bg-[white]  rounded-full flex items-center justify-center  shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.2)] cursor-pointer  relative;
+  @apply transition-all rotate-[20deg] z-[1]  duration-200 ease-out bg-[white]  rounded-full flex items-center justify-center  shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.2)] cursor-pointer  relative;
 }
 
 .image::before {
@@ -63,4 +63,7 @@ body {
   100% {
     box-shadow: none;
   }
+}
+.modal::before {
+  @apply content-[''] w-full h-full z-[2] bg-[#00000096] absolute top-0 left-0;
 }

@@ -3,7 +3,13 @@ import GestureItem from "./GestureItem";
 import DisplayResult from "./DisplayResult";
 import {AnimatePresence, motion} from "framer-motion";
 
-function PlayerGestureSelector({startGame, setStartGame, score, setScore}) {
+function PlayerGestureSelector({
+  startGame,
+  setStartGame,
+  setShowModal,
+  score,
+  setScore,
+}) {
   const [gestureData, setGestureData] = React.useState([
     {
       id: 1,
@@ -65,7 +71,9 @@ function PlayerGestureSelector({startGame, setStartGame, score, setScore}) {
             )}
           </div>
         </div>
-        <button className="absolute border-2 border-outlineColor px-10 py-2 bottom-10 right-20 rounded-xl hover:bg-scoreColor transition-bg ease-out uppercase text-xl tracking-[.2em]">
+        <button
+          onClick={() => setShowModal(true)}
+          className="absolute border-2 border-outlineColor px-10 py-2 bottom-10 right-20 rounded-xl hover:bg-scoreColor transition-bg ease-out uppercase text-xl tracking-[.2em]">
           Rule$
         </button>
       </div>
