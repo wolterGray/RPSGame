@@ -5,6 +5,7 @@ function GestureItem(props) {
   const handleClick = () => {
     props.handleSelections(props.name);
   };
+    console.log(props);
   return (
     <motion.div
       key={props.id}

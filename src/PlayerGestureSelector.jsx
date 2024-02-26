@@ -1,5 +1,7 @@
 import React from "react";
 import GestureItem from "./GestureItem";
+import DisplayResult from "./DisplayResult";
+import {AnimatePresence} from "framer-motion";
 
 function PlayerGestureSelector({startGame, setStartGame}) {
   const [gestureData, setGestureData] = React.useState([
@@ -25,24 +27,35 @@ function PlayerGestureSelector({startGame, setStartGame}) {
 
   const [computerSelection, setComputerSelection] = React.useState([]);
   const [userSelection, setUserSelection] = React.useState([]);
-  
-  console.log(userSelection, computerSelection);
+
   const handleSelections = (option) => {
     setStartGame(true);
-    setUserSelection(gestureData.filter((b) => b.name === option));
-    setComputerSelection([
-      gestureData[Math.floor(Math.random() * gestureData.length)],
-    ]);
+    setUserSelection(gestureData.filter((b) => b.name === option)[0]);
+    setComputerSelection(
+      gestureData[Math.floor(Math.random() * gestureData.length)]
+    );
   };
   return (
     <div>
       <div className="mt-14">
         <div className=" flex flex-col items-center mx-auto ">
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-8">
-            {!startGame &&
-              gestureData.map((button) => (
-                <GestureItem handleSelections={handleSelections} key={button.id} {...button} />
-              ))}
+            <AnimatePresence>
+              {startGame ? (
+                <DisplayResult
+                  userSelection={userSelection}
+                  computerSelection={computerSelection}
+                />
+              ) : (
+                gestureData.map((button) => (
+                  <GestureItem
+                    key={button.id}
+                    handleSelections={handleSelections}
+                    {...button}
+                  />
+                ))
+              )}
+            </AnimatePresence>
           </div>
         </div>
         <button className="absolute border-2 border-outlineColor px-10 py-2 bottom-10 right-20 rounded-xl hover:bg-scoreColor transition-bg ease-out uppercase text-xl tracking-[.2em]">
