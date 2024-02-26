@@ -9,3 +9,40 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.pseudo_content {
+  content: "";
+  position: absolute;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  border-radius: 100%;
+}
+
+.image {
+  @apply transition-all rotate-[20deg] duration-200 ease-out bg-[white] w-52 h-52 rounded-full flex items-center justify-center border-[30px]  shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.2)] cursor-pointer  relative;
+}
+.image:last-child {
+  /* position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.image::before {
+  @apply pseudo_content transition-all ease-in-out duration-200 shadow-[inset_0px_-4px_1px_3px_rgba(0,0,0,0.3)];
+}
+.image::after {
+  @apply pseudo_content shadow-[inset_0px_8px_6px_3px_rgba(255,255,255,0.1)];
+}
+.image:hover {
+  @apply rotate-0;
+}
+.image:active {
+  @apply shadow-[inset_0px_3px_1px_3px_rgba(0,0,0,0.1)]  translate-y-1;
+}
+.image:active::after {
+  @apply pseudo_content shadow-[0px_0px_4px_1px_rgba(0,0,0,0.4)];
+}
+.image:active::before {
+  @apply pseudo_content  shadow-[inset_0px_0px_7px_6px_rgba(0,0,0,0.2)];
+}
