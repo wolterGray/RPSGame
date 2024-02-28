@@ -3,8 +3,11 @@ import {motion} from "framer-motion";
 
 function GestureItem(props) {
   const handleClick = () => {
-    props.handleSelections && props.handleSelections(props.name);
+    props.handleSelection && props.handleSelection(props.name);
   };
+  const largeSize = props.large
+    ? "mediaGestureLarge"
+    : "w-52 h-52 border-[25px]";
 
   return (
     <motion.div
@@ -15,10 +18,8 @@ function GestureItem(props) {
       key={props.id}
       onClick={handleClick}
       style={{borderColor: `${props.color}`}}
-      className={`image ${
-        props.size ? "w-80 h-80 border-[40px]" : "w-52 h-52 border-[25px]"
-      } ${props.win && "boxShadow"}`}>
-      <img className=" w-[40%]" src={props.path} alt={props.name} />
+      className={`image ${largeSize} ${props.win && "boxShadow"}`}>
+      <img className=" w-[40%] " src={props.path} alt={props.name} />
     </motion.div>
   );
 }

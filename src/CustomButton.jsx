@@ -4,7 +4,7 @@ function CustomButton({children, onClick}) {
   return (
     <button
       onClick={onClick}
-      className="bg-[white]  whitespace-nowrap uppercase  text-scoreColor px-10 py-2 rounded-lg">
+      className="bg-[white]  whitespace-nowrap uppercase  text-scoreColor  sm:px-10 sm:py-2 px-20 py-4 rounded-lg">
       {children}
     </button>
   );
