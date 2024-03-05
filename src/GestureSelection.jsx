@@ -1,7 +1,7 @@
 import React from "react";
 import GestureItem from "./GestureItem";
 import DisplayResult from "./DisplayResult";
-import {AnimatePresence, motion} from "framer-motion";
+import { motion} from "framer-motion";
 
 function GestureSelection({
   startGame,
