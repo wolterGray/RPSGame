@@ -8,6 +8,7 @@ function GestureSelection({
   setStartGame,
   startBonusGame,
   setStartBonusGame,
+  showModal,
   setShowModal,
   score,
   setScore,
@@ -149,12 +150,16 @@ function GestureSelection({
       </motion.div>
 
       <div className="flex gap-4 absolute bottom-10 sm:right-10 sm:left-auto left-1/2 sm:-translate-x-0  -translate-x-1/2 ">
-        <button onClick={() => setShowModal(true)} className="rulesBtn">
+        <button
+          onClick={() => setShowModal(true)}
+          className={`rulesBtn ${showModal && "bg-red-900"}`}>
           Rule$
         </button>
         <button
           onClick={() => setStartBonusGame((prev) => !prev)}
-          className={`rulesBtn`}>
+          className={`rulesBtn ${
+            startBonusGame && "bg-yellow-600 hover:bg-yellow-500"
+          }`}>
           Bonu$
         </button>
       </div>
