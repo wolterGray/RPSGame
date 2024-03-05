@@ -1,7 +1,10 @@
 import React from "react";
 import {motion} from "framer-motion";
 
-function Rules({setShowModal}) {
+function Rules({setShowModal, startBonusGame}) {
+  const rulesImg = startBonusGame
+    ? "images/image-rules-bonus.svg"
+    : "images/image-rules.svg";
   return (
     <motion.div exit={{opacity: 0}} className="modal">
       <motion.div
@@ -11,15 +14,11 @@ function Rules({setShowModal}) {
         <div className=" w-full mb-7 flex justify-between items-center">
           <p className=" uppercase font-bold text-3xl text-scoreColor">Rules</p>
           <button onClick={() => setShowModal(false)}>
-            <img className=" w-full" src="/images/icon-close.svg" alt="cross" />
+            <img className=" w-full" src="images/icon-close.svg" alt="cross" />
           </button>
         </div>
         <div>
-          <img
-            className="mediaRulesImg"
-            src="/images/image-rules.svg"
-            alt="rules"
-          />
+          <img className="mediaRulesImg" src={rulesImg} alt="rules" />
         </div>
       </motion.div>
     </motion.div>

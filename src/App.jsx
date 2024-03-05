@@ -6,11 +6,13 @@ import GestureSelection from "./GestureSelection";
 
 function App() {
   const [startGame, setStartGame] = React.useState(false);
+  const [startBonusGame, setStartBonusGame] = React.useState(false);
+
   const [score, setScore] = React.useState(0);
   const [showModal, setShowModal] = React.useState();
 
   return (
-    <div className="mediaApp w-full h-screen relative uppercase font-semibold select-none box-border text-textColor ">
+    <div className="mediaApp w-full max-h-screen h-screen relative uppercase font-semibold select-none box-border text-textColor ">
       <div className="w-full mx-auto">
         <Header score={score} />
         <GestureSelection
@@ -18,11 +20,13 @@ function App() {
           score={score}
           startGame={startGame}
           setStartGame={setStartGame}
+          startBonusGame={startBonusGame}
+          setStartBonusGame={setStartBonusGame}
           setScore={setScore}
         />
       </div>
       <AnimatePresence>
-        {showModal && <Rules setShowModal={setShowModal} />}
+        {showModal && <Rules startBonusGame={startBonusGame} setShowModal={setShowModal} />}
       </AnimatePresence>
     </div>
   );

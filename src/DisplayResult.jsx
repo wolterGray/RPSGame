@@ -20,8 +20,15 @@ function DisplayResult({
       setResultMessage("Draw");
     } else if (
       (userResult === "paper" && compResult === "rock") ||
+      (userResult === "paper" && compResult === "spock") ||
       (userResult === "rock" && compResult === "scissors") ||
-      (userResult === "scissors" && compResult === "paper")
+      (userResult === "rock" && compResult === "lizard") ||
+      (userResult === "scissors" && compResult === "paper") ||
+      (userResult === "scissors" && compResult === "lizard") ||
+      (userResult === "lizard" && compResult === "spock") ||
+      (userResult === "lizard" && compResult === "paper") ||
+      (userResult === "spock" && compResult === "scissors") ||
+      (userResult === "spock" && compResult === "rock")
     ) {
       setResultMessage("You win!");
       setUserWin(true);
@@ -39,23 +46,21 @@ function DisplayResult({
     getResultMessage(userSelection.name, computerSelection.name);
   }, []);
   return (
-    <div
-      initial={{scale: 0}}
-      className="mediaGestureWrapper flex sm:justify-between justify-center flex-wrap items-center  mx-auto  mt-20">
-      <div className=" flex flex-col sm:order-none order-1 gap-12 items-center ">
+    <motion.div
+      initial={{scale: 0, opacity: 0}}
+      animate={{scale: 1, opacity: 1}}
+      className="flex max-w-4xl  items-center sm:justify-center justify-around sm:flex-nowrap flex-wrap mx-auto mt-20 gap-x-5">
+      <div className="flex flex-col  items-center gap-10 order-1 sm:order-none">
         <h2 className="mediaGestText text-nowrap">You Picked</h2>
-        <GestureItem
-          large={true}
-          size={true}
-          win={userWin}
-          {...userSelection}
-        />
+        <div className={`mediaGestItem `}>
+          <GestureItem win={userWin} {...userSelection} />
+        </div>
       </div>
       <motion.div
         initial={{scale: 0}}
         animate={{scale: 1}}
         transition={{delay: 0.3}}
-        className="flex sm:order-none order-3 mt-10 flex-col items-center">
+        className="flex mt-10 flex-col items-center flex-1 sm:order-none order-3">
         <p className=" text-4xl mb-5  whitespace-nowrap">{resultMessage}</p>
         {resultMessage !== "game over" ? (
           <CustomButton onClick={() => setStartGame(false)}>
@@ -65,11 +70,13 @@ function DisplayResult({
           <CustomButton onClick={newGame}>New Game</CustomButton>
         )}
       </motion.div>
-      <div className=" flex flex-col sm:order-none order-2 gap-12 items-center ">
-        <h2 className="mediaGestText text-nowrap">The House Picked</h2>
-        <GestureItem large={true} w={80} win={compWin} {...computerSelection} />
+      <div className="flex flex-col items-center gap-10 order-2 sm:order-none">
+        <h2 className="mediaGestText text-nowrap">The house picked</h2>
+        <div className="mediaGestItem">
+          <GestureItem win={compWin} {...computerSelection} />
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
